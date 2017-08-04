@@ -21,6 +21,7 @@ import javax.persistence.NamedQueries;
 public class StoneType {
     
     private static List<StoneType> s_allStones;
+    private static HashMap<String, StoneType> s_allStonesByName;
     
     private List m_stoneHasOres;
     private List m_stoneHasGems;
@@ -40,9 +41,9 @@ public class StoneType {
         m_baseValue = inBaseValue;
         m_color = inColor;
         
-        ArrayList<OreType> m_stoneHasOre = new ArrayList<OreType>();
+        ArrayList<OreType> m_stoneHasOre = new ArrayList();
 
-        ArrayList<GemType> m_stoneHasGems = new ArrayList<GemType>();
+        ArrayList<GemType> m_stoneHasGems = new ArrayList();
         
         if(s_nextID <= 0)
         {
@@ -53,9 +54,15 @@ public class StoneType {
         
         if(s_allStones == null)
         {
-            s_allStones = new ArrayList<StoneType>();
+            s_allStones = new ArrayList();
         }
         s_allStones.add(this);
+        
+        if(s_allStonesByName == null)
+        {
+            s_allStonesByName = new HashMap();
+        }
+        s_allStonesByName.put(inName, this);
     }
     
     public String getName()
@@ -101,6 +108,14 @@ public class StoneType {
     public static List<StoneType> getAllStones()
     {
         return s_allStones;
+    }
+    public static HashMap<String, StoneType> getAllStonesByName()
+    {
+        return s_allStonesByName;
+    }
+    public static StoneType GetStoneTypeByName(String inName)
+    {
+        return s_allStonesByName.get(inName);
     }
     
 }
