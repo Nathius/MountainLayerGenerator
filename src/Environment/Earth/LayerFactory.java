@@ -6,7 +6,6 @@
 
 package Environment.Earth;
 
-import dwarvenstrongholdmanager.MountainLayerGenerator;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
