@@ -169,6 +169,27 @@ public class LayerFactory {
   
         //Create the ores and
         //set up the ores contained in each stone type
+        InitStoneContainsOreList(
+            sedimentaryStones, 
+            igneousIntrusive,
+            igneousExtrusive,
+            metamorphicStones);
+        
+        
+        //add all stones to the layer type stone lists
+        m_layerTypeContainStones.put(LayerTypes.SOIL, soilStones);
+        m_layerTypeContainStones.put(LayerTypes.METAMORPHIC, metamorphicStones);
+        m_layerTypeContainStones.put(LayerTypes.IGNEOUS_EXTRUSIVE, igneousExtrusive);
+        m_layerTypeContainStones.put(LayerTypes.SEDIMENTARY, sedimentaryStones);
+        m_layerTypeContainStones.put(LayerTypes.IGNEOUS_INTRUSIVE, igneousIntrusive);
+    }
+    
+    private void InitStoneContainsOreList(
+        HashMap<String, StoneType> sedimentaryStones,
+        HashMap<String, StoneType> igneousIntrusive,
+        HashMap<String, StoneType> igneousExtrusive,
+        HashMap<String, StoneType> metamorphicStones)
+    {
         m_stoneContainsOres = new ArrayList();
         
         OreType nativeAluminum = new OreType("Native Aluminum", defaultStoneValue, Color.gray);
@@ -299,16 +320,6 @@ public class LayerFactory {
         {
             m_stoneContainsOres.add(new StoneHasOre(iterator.next(), tetrahedrite));
         }
-        
-        
-        //add all stones to the layer type stone lists
-        m_layerTypeContainStones.put(LayerTypes.SOIL, soilStones);
-        m_layerTypeContainStones.put(LayerTypes.METAMORPHIC, metamorphicStones);
-        m_layerTypeContainStones.put(LayerTypes.IGNEOUS_EXTRUSIVE, igneousExtrusive);
-        m_layerTypeContainStones.put(LayerTypes.SEDIMENTARY, sedimentaryStones);
-        m_layerTypeContainStones.put(LayerTypes.IGNEOUS_INTRUSIVE, igneousIntrusive);
-
-        
     }
     
     public StoneType getRandomStoneType()
