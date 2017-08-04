@@ -336,22 +336,23 @@ public class LayerFactory {
         return newDeposit;
     }
     
-    public Deposit getRandomGemDepositForStone(StoneType inStone)
-    {
-        List<OreType> allOres = new ArrayList<OreType>();
-        for(int i = 0; i < m_stoneContainsGems.size(); i++)
-        {
-            if(m_stoneContainsGems.get(i).stone == inStone)
-            {
-                allOres.add(m_stoneContainsGems.get(i).ore);
-            }
-        }
-        
-        int num = s_random.nextInt(allOres.size());
-        
-        Deposit newDeposit = Deposit.GenerateDeposit(allOres.get(num), 10, 100, 10, 100);
-        return newDeposit;
-    }
+    //TODO commented out untill m_stoneContainsGems mapping is populated
+//    public Deposit getRandomGemDepositForStone(StoneType inStone)
+//    {
+//        List<OreType> allOres = new ArrayList<OreType>();
+//        for(int i = 0; i < m_stoneContainsGems.size(); i++)
+//        {
+//            if(m_stoneContainsGems.get(i).stone == inStone)
+//            {
+//                allOres.add(m_stoneContainsGems.get(i).ore);
+//            }
+//        }
+//        
+//        int num = s_random.nextInt(allOres.size());
+//        
+//        Deposit newDeposit = Deposit.GenerateDeposit(allOres.get(num), 10, 100, 10, 100);
+//        return newDeposit;
+//    }
     
     public List<Layer> makeLayers(int numLayers)
     {
