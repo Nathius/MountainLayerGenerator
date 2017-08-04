@@ -14,10 +14,9 @@ import java.util.List;
  *
  * @author Nathius
  */
-public class OreType {
+public class OreType extends MinableType {
     private static List<OreType> s_allOres;
     
-    private String m_name;
     private float m_baseValue;
     private Color m_color;
     private int m_id;
@@ -26,7 +25,7 @@ public class OreType {
     
     public OreType(String inName, float inBaseValue, Color inColor)
     {
-        m_name = inName;
+        super(inName, "Ingots");
         m_baseValue = inBaseValue;
         m_color = inColor;
 
@@ -45,10 +44,7 @@ public class OreType {
         s_allOres.add(this);
     }
     
-    public String getName()
-    {
-        return m_name;
-    }
+    
     
     public float getBaseValue()
     {

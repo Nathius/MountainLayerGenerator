@@ -22,13 +22,12 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({@NamedQuery(name = GemType.GET_ALL_QUERY_NAME, query = "SELECT gem FROM GemType gem")})
-public class GemType {
+public class GemType extends MinableType {
     
     public static final String GET_ALL_QUERY_NAME = "GemType.getAll";
     
     private static List<GemType> s_allGems;
     
-    private String m_name;
     private float m_baseValue;
     private float m_cutValue;
     private Color m_color;
@@ -38,7 +37,7 @@ public class GemType {
     
     public GemType(String inName, float inBaseValue, float inCutValue, Color inColor)
     {
-        m_name = inName;
+        super(inName, "Chunks");
         m_baseValue = inBaseValue;
         m_cutValue = inCutValue;
         m_color = inColor;
@@ -57,12 +56,7 @@ public class GemType {
         }
         s_allGems.add(this);
     }
-    
-    public String getName()
-    {
-        return m_name;
-    }
-    
+   
     public float getBaseValue()
     {
         return m_baseValue;

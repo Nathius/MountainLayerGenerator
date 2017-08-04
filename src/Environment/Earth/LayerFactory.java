@@ -308,7 +308,7 @@ public class LayerFactory {
         return allOres.get(num);
     }
     
-    public OreType getRandomOreTypeForStone(StoneType inStone)
+    public Deposit getRandomOreTypeForStone(StoneType inStone)
     {
         List<OreType> allOres = new ArrayList<OreType>();
         for(int i = 0; i < m_stoneContainsOres.size(); i++)
@@ -320,7 +320,9 @@ public class LayerFactory {
         }
         
         int num = s_random.nextInt(allOres.size());
-        return allOres.get(num);
+        
+        Deposit newDeposit = Deposit.GenerateDeposit(allOres.get(num), 10, 100, 10, 100);
+        return newDeposit;
     }
     
     public List<Layer> makeLayers(int numLayers)
@@ -339,7 +341,7 @@ public class LayerFactory {
         //generate soil levels
         for(int i = 0; i < numSoil; i++)
         {
-            layers.add(new Layer(currentDepth++, getRandomStoneTypeForLayer(LayerTypes.SOIL), new ArrayList<OreType>()));
+            layers.add(new Layer(currentDepth++, getRandomStoneTypeForLayer(LayerTypes.SOIL), new ArrayList<Deposit>()));
         }
         
         //generate sedimentary layers
@@ -377,14 +379,18 @@ public class LayerFactory {
     public Layer randomLayerByType(LayerTypes inType, int inMaxOresPerLayer)
     {
         StoneType stone = getRandomStoneTypeForLayer(inType);
-        List<OreType> oresForLayer = new ArrayList<OreType>();
+        List<Deposit> depositsForLayer = new ArrayList<Deposit>();
+        
+        //get a random number of ore deposits
         int numToGen = s_random.nextInt(inMaxOresPerLayer);
         for(int j = 0; j < numToGen; j++)
         {
-            oresForLayer.add(getRandomOreTypeForStone(stone));
+            depositsForLayer.add(getRandomOreTypeForStone(stone));
         }
         
-        return new Layer(0 ,stone , oresForLayer);
+        //TODO get random number of gem deposits
+        
+        return new Layer(0 ,stone , depositsForLayer);
     }
     
 }

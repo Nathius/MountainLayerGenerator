@@ -16,10 +16,10 @@ public class Layer {
     
     private StoneType m_stoneType;
     private int m_depth;
-    private List<OreType> m_ores;
+    private List<Deposit> m_ores;
     
     
-    public Layer(int inDepth, StoneType inStoneType, List<OreType> inOres)
+    public Layer(int inDepth, StoneType inStoneType, List<Deposit> inOres)
     {
         m_depth = inDepth;
         m_stoneType = inStoneType;
@@ -40,7 +40,7 @@ public class Layer {
         return m_stoneType;
     }
     
-    public List<OreType> getOreTypes()
+    public List<Deposit> getOreTypes()
     {
         return m_ores;
     }
@@ -49,10 +49,15 @@ public class Layer {
     public String toString() {
         String str = "Layer \n\tdepth:" + m_depth + ", \n\tstone:" + m_stoneType.getName() + ", \n\tores :";
         int i = 0;
-        for(OreType ore : m_ores)
+        for(Deposit deposit : m_ores)
         {
             i++;
-            str += "\n\t\t" + i + ") " + ore.getName();
+            str += "\n\t\t" 
+                    + i + ") " 
+                    + deposit.GetOreType().getName() 
+                    + ", size: " + deposit.getSize() 
+                        + " " + deposit.GetOreType().getUnitName()
+                    + ", purity: " + deposit.GetPurity() + "%";
         }
         return str;
         

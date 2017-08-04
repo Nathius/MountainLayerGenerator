@@ -26,10 +26,6 @@ public class LayerFactoryTestDriver {
         for(Layer l : layers)
         {
             System.out.println(l.toString());
-        }
-        
-        
+        }   
     }
-    
-    
 }
