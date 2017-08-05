@@ -6,10 +6,8 @@
 
 package Environment.Earth;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -24,10 +22,10 @@ public class LayerFactory {
     
     private static LayerFactory s_factory;
     
-    private List<StoneHasOre> m_stoneContainsOres;
-    private List<StoneHasGem> m_stoneContainsGems;
+    private final List<StoneHasOre> m_stoneContainsOres;
+    private final List<StoneHasGem> m_stoneContainsGems;
     
-    private Map<LayerTypes, HashMap<String, StoneType> > m_layerTypeContainStones;
+    private final Map<LayerTypes, HashMap<String, StoneType> > m_layerTypeContainStones;
     
     private static void create() {
         s_factory = new LayerFactory();
@@ -186,7 +184,7 @@ public class LayerFactory {
     public Layer randomLayerByType(LayerTypes inType, int inMaxOresPerLayer)
     {
         StoneType stone = getRandomStoneTypeForLayer(inType);
-        List<Deposit> depositsForLayer = new ArrayList<Deposit>();
+        List<Deposit> depositsForLayer = new ArrayList();
         
         //get a random number of ore deposits
         int numToGen = s_random.nextInt(inMaxOresPerLayer);
