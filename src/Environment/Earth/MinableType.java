@@ -12,17 +12,24 @@ package Environment.Earth;
  */
 public class MinableType {
     protected String m_name;
+    protected String m_namePrefix;
     protected String m_unitName;
     
-    public MinableType(String inName, String inUnitName)
+    public MinableType(String inName, String inNamePrefix, String inUnitName)
     {
         m_name = inName;
+        m_namePrefix = inNamePrefix;
         m_unitName = inUnitName;
     }
     
     public String getName()
     {
         return m_name;
+    }
+    
+    public String GetNamePrefix()
+    {
+        return m_namePrefix;
     }
     
     public String getUnitName()

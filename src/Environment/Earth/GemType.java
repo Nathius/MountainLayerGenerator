@@ -37,7 +37,7 @@ public class GemType extends MinableType {
     
     public GemType(String inName, float inBaseValue, float inCutValue, Color inColor)
     {
-        super(inName, "Chunks");
+        super(inName, "Cluster", "Chunks");
         m_baseValue = inBaseValue;
         m_cutValue = inCutValue;
         m_color = inColor;

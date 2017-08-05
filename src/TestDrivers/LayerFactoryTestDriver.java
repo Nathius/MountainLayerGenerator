@@ -8,6 +8,7 @@ package TestDrivers;
 
 import Environment.Earth.Layer;
 import Environment.Earth.LayerFactory;
+import Environment.Earth.StoneType;
 import java.util.List;
 
 /**

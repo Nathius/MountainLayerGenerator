@@ -55,9 +55,10 @@ public class Layer {
             str += "\n\t\t" 
                     + i + ") " 
                     + deposit.GetOreType().getName() 
-                    + ", size: " + deposit.getSize() 
+                    + " " + deposit.GetOreType().GetNamePrefix()
+                    + ", " + deposit.getSize() 
                         + " " + deposit.GetOreType().getUnitName()
-                    + ", purity: " + deposit.GetPurity() + "%";
+                    + ", " + deposit.GetPurity() + "% pure";
         }
         return str;
         

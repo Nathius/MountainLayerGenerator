@@ -22,13 +22,6 @@ public class LayerFactory {
 
     public static Random s_random;
     
-    //1 value = 1 copper
-    //10copper = 1 silver
-    //100 copper = 1 gold
-    //1000 copper = 1 platinum
-    //default stone value 1 silver
-    private final float m_defaultStoneValue = 10;
-    
     private enum LayerTypes
     {
         SOIL,
@@ -82,84 +75,16 @@ public class LayerFactory {
         return s_factory;
     }
     
-    private HashMap<String, StoneType> GetSoilStones()
-    {
-        HashMap<String, StoneType> soilStones = new HashMap();
-        
-        soilStones.put("Dirt", new StoneType("Dirt", 0, Color.red));
-        soilStones.put("Peat", new StoneType("Peat", 0, Color.yellow));
-        soilStones.put("Silt", new StoneType("Silt", 0, Color.gray));
-        soilStones.put("Sand", new StoneType("Sand", 0, Color.yellow));
-        soilStones.put("Clay", new StoneType("Clay", 0, Color.red));
-        
-        return soilStones;
-    }
-    
-    private HashMap<String, StoneType> GetSedementaryStones()
-    {
-        HashMap<String, StoneType> sedimentaryStones = new HashMap();
-        
-        sedimentaryStones.put("Chalk", new StoneType("Chalk", m_defaultStoneValue, Color.white));
-        sedimentaryStones.put("Chert", new StoneType("Chert", m_defaultStoneValue, Color.RED));
-        sedimentaryStones.put("Clay Stone", new StoneType("Clay Stone", m_defaultStoneValue, Color.gray));
-        sedimentaryStones.put("Conglomerate", new StoneType("Conglomerate", m_defaultStoneValue, Color.yellow));
-        sedimentaryStones.put("Mudstone", new StoneType("Mudstone", m_defaultStoneValue, Color.yellow));
-        sedimentaryStones.put("Limestone", new StoneType("Limestone", m_defaultStoneValue, Color.white));
-        sedimentaryStones.put("Rock Salt", new StoneType("Rock Salt", m_defaultStoneValue, Color.white));
-        sedimentaryStones.put("Sandstone", new StoneType("Sandstone", m_defaultStoneValue, Color.yellow));
-        sedimentaryStones.put("Shale", new StoneType("Shale", m_defaultStoneValue, Color.gray));
-        sedimentaryStones.put("Siltstone", new StoneType("Siltstone", m_defaultStoneValue, Color.yellow));
-        
-        return sedimentaryStones;
-    }
-    
-    public HashMap<String, StoneType> GetIgneousIntrusiveStones()
-    {
-        HashMap<String, StoneType> igneousIntrusive = new HashMap();
-        
-        igneousIntrusive.put("Diorite", new StoneType("Diorite", m_defaultStoneValue, Color.gray));
-        igneousIntrusive.put("Gabbro", new StoneType("Gabbro", m_defaultStoneValue, Color.gray));
-        igneousIntrusive.put("Granite", new StoneType("Granite", m_defaultStoneValue, Color.gray));
-        
-        return igneousIntrusive;
-    }
-    
-    public HashMap<String, StoneType> GetIgneousExtrusiveStones()
-    {
-        HashMap<String, StoneType> igneousExtrusive = new HashMap();
-        
-        igneousExtrusive.put("Andesite", new StoneType("Andesite", m_defaultStoneValue, Color.gray));
-        igneousExtrusive.put("Basalt", new StoneType("Basalt", m_defaultStoneValue, Color.black));
-        igneousExtrusive.put("Dacite", new StoneType("Dacite", m_defaultStoneValue, Color.gray));
-        igneousExtrusive.put("Felsite", new StoneType("Felsite", m_defaultStoneValue, Color.gray));
-        igneousExtrusive.put("Obsidian", new StoneType("Obsidian", m_defaultStoneValue, Color.black));
-        igneousExtrusive.put("Rhyolite", new StoneType("Rhyolite", m_defaultStoneValue, Color.gray));
-        
-        return igneousExtrusive;
-    }
-    
-    public HashMap<String, StoneType> GetMetamorphicStones()
-    {
-        HashMap<String, StoneType> metamorphicStones = new HashMap();
-        
-        metamorphicStones.put("Gneiss", new StoneType("Gneiss", m_defaultStoneValue, Color.gray));
-        metamorphicStones.put("Marble", new StoneType("Marble", m_defaultStoneValue, Color.white));
-        metamorphicStones.put("Phyllite", new StoneType("Phyllite", m_defaultStoneValue, Color.gray));
-        metamorphicStones.put("Quartzite", new StoneType("Quartzite", m_defaultStoneValue, Color.white));
-        metamorphicStones.put("Schist", new StoneType("Schist", m_defaultStoneValue, Color.gray));
-        metamorphicStones.put("Slate", new StoneType("Slate", m_defaultStoneValue, Color.gray));
-        
-        return metamorphicStones;
-    }
     
     private LayerFactory()
     {
         //Set up and get the Stone type lists
-        HashMap<String, StoneType> soilStones = GetSoilStones();
-        HashMap<String, StoneType> sedimentaryStones = GetSedementaryStones();
-        HashMap<String, StoneType> igneousIntrusive = GetIgneousIntrusiveStones();
-        HashMap<String, StoneType> igneousExtrusive = GetIgneousExtrusiveStones();
-        HashMap<String, StoneType> metamorphicStones = GetMetamorphicStones();
+        StoneTypeMappings.InitMappings();
+        HashMap<String, StoneType> soilStones = StoneTypeMappings.GetSoilStones();
+        HashMap<String, StoneType> sedimentaryStones = StoneTypeMappings.GetSedimentaryStones();
+        HashMap<String, StoneType> igneousIntrusive = StoneTypeMappings.GetIgneousIntrusive();
+        HashMap<String, StoneType> igneousExtrusive = StoneTypeMappings.GetIgneousExtrusive();
+        HashMap<String, StoneType> metamorphicStones = StoneTypeMappings.GetMetamorphicStones();
         
         //Create the ores and
         //set up the ores contained in each stone type
@@ -190,16 +115,17 @@ public class LayerFactory {
         HashMap<String, StoneType> igneousExtrusive,
         HashMap<String, StoneType> metamorphicStones)
     {
+        int defaultOreValue = 20;
         m_stoneContainsOres = new ArrayList();
         
-        OreType nativeAluminum = new OreType("Native Aluminum", m_defaultStoneValue, Color.gray);
+        OreType nativeAluminum = new OreType("Native Aluminum", defaultOreValue, Color.gray);
         Iterator<StoneType> iterator = igneousExtrusive.values().iterator();
         while(iterator.hasNext())
         {
             m_stoneContainsOres.add(new StoneHasOre(iterator.next(), nativeAluminum));
         }
         
-        OreType cassiterite = new OreType("Cassiterite", m_defaultStoneValue, Color.gray);
+        OreType cassiterite = new OreType("Cassiterite", defaultOreValue, Color.gray);
         iterator = sedimentaryStones.values().iterator();
         while(iterator.hasNext())
         {
@@ -207,7 +133,7 @@ public class LayerFactory {
         }
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Granite"), cassiterite));
         
-        OreType nativeCopper = new OreType("Native Copper", m_defaultStoneValue, Color.red);
+        OreType nativeCopper = new OreType("Native Copper", defaultOreValue, Color.red);
         iterator = igneousExtrusive.values().iterator();
         while(iterator.hasNext())
         {
@@ -216,7 +142,7 @@ public class LayerFactory {
         
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Sandstone"), nativeCopper));
         
-        OreType gelena = new OreType("Gelena", m_defaultStoneValue, Color.gray);
+        OreType gelena = new OreType("Gelena", defaultOreValue, Color.gray);
         iterator = igneousExtrusive.values().iterator();
         while(iterator.hasNext())
         {
@@ -230,10 +156,10 @@ public class LayerFactory {
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Granite"), gelena));
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Limestone"), gelena));
         
-        OreType garnierite = new OreType("Garnierite", m_defaultStoneValue, Color.green);
+        OreType garnierite = new OreType("Garnierite", defaultOreValue, Color.green);
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Gabbro"), garnierite));
         
-        OreType nativeGold = new OreType("Native Gold", m_defaultStoneValue, Color.yellow);
+        OreType nativeGold = new OreType("Native Gold", defaultOreValue, Color.yellow);
         iterator = igneousExtrusive.values().iterator();
         while(iterator.hasNext())
         {
@@ -251,7 +177,7 @@ public class LayerFactory {
         }
 
         
-        OreType hematite = new OreType("Hematite", m_defaultStoneValue, Color.gray);
+        OreType hematite = new OreType("Hematite", defaultOreValue, Color.gray);
         iterator = sedimentaryStones.values().iterator();
         while(iterator.hasNext())
         {
@@ -263,43 +189,43 @@ public class LayerFactory {
             m_stoneContainsOres.add(new StoneHasOre(iterator.next(), hematite));
         }
         
-        OreType nativeSilver = new OreType("Native Silver", m_defaultStoneValue, Color.gray);
+        OreType nativeSilver = new OreType("Native Silver", defaultOreValue, Color.gray);
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Granite"), nativeSilver));
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Gneiss"), nativeSilver));
         
-        OreType limonite = new OreType("Limonite", m_defaultStoneValue, Color.gray);
+        OreType limonite = new OreType("Limonite", defaultOreValue, Color.gray);
         iterator = sedimentaryStones.values().iterator();
         while(iterator.hasNext())
         {
             m_stoneContainsOres.add(new StoneHasOre(iterator.next(), limonite));
         }
         
-        OreType magnetite = new OreType("Magnetite", m_defaultStoneValue, Color.gray);
+        OreType magnetite = new OreType("Magnetite", defaultOreValue, Color.gray);
         iterator = sedimentaryStones.values().iterator();
         while(iterator.hasNext())
         {
             m_stoneContainsOres.add(new StoneHasOre(iterator.next(), magnetite));
         }
         
-        OreType malachite = new OreType("Malachite", m_defaultStoneValue, Color.gray);
+        OreType malachite = new OreType("Malachite", defaultOreValue, Color.gray);
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Limestone"), malachite));
         m_stoneContainsOres.add(new StoneHasOre(StoneType.GetStoneTypeByName("Marble"), malachite));
         
-        OreType nativePlatinum = new OreType("Native Platinum", m_defaultStoneValue, Color.gray);
+        OreType nativePlatinum = new OreType("Native Platinum", defaultOreValue, Color.gray);
         iterator = sedimentaryStones.values().iterator();
         while(iterator.hasNext())
         {
             m_stoneContainsOres.add(new StoneHasOre(iterator.next(), nativePlatinum));
         }
         
-        OreType sphalerite = new OreType("Sphalerite", m_defaultStoneValue, Color.gray);
+        OreType sphalerite = new OreType("Sphalerite", defaultOreValue, Color.gray);
         iterator = metamorphicStones.values().iterator();
         while(iterator.hasNext())
         {
             m_stoneContainsOres.add(new StoneHasOre(iterator.next(), sphalerite));
         }
         
-        OreType tetrahedrite = new OreType("Tetrahedrite", m_defaultStoneValue, Color.gray);
+        OreType tetrahedrite = new OreType("Tetrahedrite", defaultOreValue, Color.gray);
         iterator = metamorphicStones.values().iterator();
         while(iterator.hasNext())
         {

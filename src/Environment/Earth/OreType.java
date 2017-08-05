@@ -25,7 +25,7 @@ public class OreType extends MinableType {
     
     public OreType(String inName, float inBaseValue, Color inColor)
     {
-        super(inName, "Ingots");
+        super(inName, "Ore", "Ingots");
         m_baseValue = inBaseValue;
         m_color = inColor;
 
@@ -65,6 +65,7 @@ public class OreType extends MinableType {
     {
         return s_allOres;
     }
+    
     
 
 }
