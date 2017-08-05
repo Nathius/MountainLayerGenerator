@@ -22,29 +22,6 @@ public class LayerFactory {
 
     public static Random s_random;
     
-    private enum LayerTypes
-    {
-        SOIL,
-        SEDIMENTARY,
-        IGNEOUS_EXTRUSIVE,
-        IGNEOUS_INTRUSIVE,
-        METAMORPHIC,
-        COUNT
-    };
-    
-    
-    
-    public class StoneHasGem
-    {
-        public StoneType stone;
-        public GemType gem;
-        public StoneHasGem(StoneType inStone, GemType inGem)
-        {
-            stone = inStone;
-            gem = inGem;
-        }
-    }
-    
     private static LayerFactory s_factory;
     
     private List<StoneHasOre> m_stoneContainsOres;
@@ -86,11 +63,12 @@ public class LayerFactory {
             metamorphicStones);
         m_stoneContainsOres = OreTypeMappings.GetOreTypeMappings();
         
-        InitGemContainsOreList(
+        GemTypeMappings.InitStoneContainsGemList(
             sedimentaryStones, 
             igneousIntrusive,
             igneousExtrusive,
             metamorphicStones);
+        m_stoneContainsGems = GemTypeMappings.GetGemTypeMappings();
         
         //add all stones to the layer type stone lists
         m_layerTypeContainStones = new HashMap();
@@ -102,150 +80,6 @@ public class LayerFactory {
     }
     
     
-    
-    private void InitGemContainsOreList(
-        HashMap<String, StoneType> sedimentaryStones,
-        HashMap<String, StoneType> igneousIntrusive,
-        HashMap<String, StoneType> igneousExtrusive,
-        HashMap<String, StoneType> metamorphicStones)
-    {
-        m_stoneContainsGems = new ArrayList();
-        
-        GemType amberOpal = new GemType("Amber Opal", 30, 50, Color.gray);
-        Iterator<StoneType> iterator = StoneType.getAllStones().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), amberOpal));
-        }
-        
-        GemType aventurine = new GemType("Aventurine", 9, 15, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), aventurine));
-        }
-        
-        GemType bandedAgate = new GemType("Banded Agate", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), bandedAgate));
-        }
-        
-        GemType bloodstone = new GemType("Bloodstone", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), bloodstone));
-        }
-        
-        GemType blueJade = new GemType("Blue Jade", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), blueJade));
-        }
-        
-        GemType boneOpal = new GemType("Bone Opal", 30, 50, Color.gray);
-        iterator = StoneType.getAllStones().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), boneOpal));
-        }
-        
-        GemType brownJasper = new GemType("Brown Jasper", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), brownJasper));
-        }
-        
-        GemType carnelian = new GemType("Carnelian", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), carnelian));
-        }
-        
-        GemType cherryOpal = new GemType("Cherry Opal", 30, 50, Color.gray);
-        iterator = StoneType.getAllStones().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), cherryOpal));
-        }
-        
-        GemType chrysocolla = new GemType("Chrysocolla", 6, 10, Color.gray);
-        m_stoneContainsGems.add(new StoneHasGem(StoneType.GetStoneTypeByName("Malachite"), chrysocolla));
-        
-        GemType chrysoprase = new GemType("Chrysoprase", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), chrysoprase));
-        }
-        
-        GemType citrine = new GemType("Citrine", 6, 10, Color.gray);
-        iterator = StoneType.getAllStones().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), citrine));
-        }
-        
-        GemType clearTourmaline = new GemType("Clear Tourmaline", 30, 50, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), clearTourmaline));
-        }
-        iterator = metamorphicStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), clearTourmaline));
-        }
-        m_stoneContainsGems.add(new StoneHasGem(StoneType.GetStoneTypeByName("Granite"), clearTourmaline));
-        
-        GemType dendriticAgate = new GemType("Dendritic Agate", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), dendriticAgate));
-        }
-        
-        GemType fireAgate = new GemType("Fire Agate", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), fireAgate));
-        }
-        
-        GemType fortificationAgate = new GemType("Fortification Agate", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), fortificationAgate));
-        }
-        
-        GemType goldOpal = new GemType("Gold Opal", 30, 50, Color.gray);
-        iterator = StoneType.getAllStones().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), goldOpal));
-        }
-        
-        GemType grayChalcedony = new GemType("Fortification Agate", 6, 10, Color.gray);
-        iterator = sedimentaryStones.values().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), grayChalcedony));
-        }
-        
-        GemType jasperOpal = new GemType("Jasper Opal", 30, 50, Color.gray);
-        iterator = StoneType.getAllStones().iterator();
-        while(iterator.hasNext())
-        {
-            m_stoneContainsGems.add(new StoneHasGem(iterator.next(), jasperOpal));
-        }
-    }
     
     public StoneType getRandomStoneType()
     {
@@ -270,12 +104,10 @@ public class LayerFactory {
     
     public Deposit getRandomOreDepositForStone(StoneType inStone)
     {
-        List<OreType> allOres = new ArrayList<OreType>();
-        for(int i = 0; i < m_stoneContainsOres.size(); i++)
-        {
-            if(m_stoneContainsOres.get(i).stone == inStone)
-            {
-                allOres.add(m_stoneContainsOres.get(i).ore);
+        List<OreType> allOres = new ArrayList();
+        for (StoneHasOre item : m_stoneContainsOres) {
+            if (item.stone == inStone) {
+                allOres.add(item.ore);
             }
         }
         
@@ -287,12 +119,10 @@ public class LayerFactory {
     
     public Deposit getRandomGemDepositForStone(StoneType inStone)
     {
-        List<GemType> allGems = new ArrayList<GemType>();
-        for(int i = 0; i < m_stoneContainsGems.size(); i++)
-        {
-            if(m_stoneContainsGems.get(i).stone == inStone)
-            {
-                allGems.add(m_stoneContainsGems.get(i).gem);
+        List<GemType> allGems = new ArrayList();
+        for (StoneHasGem item : m_stoneContainsGems) {
+            if (item.stone == inStone) {
+                allGems.add(item.gem);
             }
         }
         
