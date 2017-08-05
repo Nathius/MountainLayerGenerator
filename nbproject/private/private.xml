@@ -3,14 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/StoneType.java</file>
-            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/GemType.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/OreTypeMappings.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/StoneHasGem.java</file>
             <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/Layer.java</file>
-            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/OreType.java</file>
-            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/MinableType.java</file>
             <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/Deposit.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/MinableType.java</file>
             <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/TestDrivers/LayerFactoryTestDriver.java</file>
             <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/LayerFactory.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/LayerTypes.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/GemType.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/StoneType.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/OreType.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/GemTypeMappings.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/StoneTypeMappings.java</file>
+            <file>file:/E:/HD%20Documents/Nathius/Projects/MountainLayerGenerator/src/Environment/Earth/StoneHasOre.java</file>
         </group>
     </open-files>
 </project-private>

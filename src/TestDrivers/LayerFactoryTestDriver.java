@@ -21,7 +21,7 @@ public class LayerFactoryTestDriver {
     {
         LayerFactory factory = LayerFactory.getLayerFactory();
         
-        List<Layer> layers = factory.makeLayers(30);
+        List<Layer> layers = factory.makeLayers(20);
         
         System.out.println("A new mountain is found!");
         for(Layer l : layers)
