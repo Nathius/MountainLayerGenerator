@@ -132,6 +132,7 @@ public class LayerFactory {
     
     public List<Layer> makeLayers(int numLayers)
     {
+        //clip the number of layers to between 10 and 50 (arbitrarily)
         if(numLayers > 50 || numLayers < 10)
         {
             numLayers = s_random.nextInt(30) + 15;
@@ -146,7 +147,7 @@ public class LayerFactory {
         //generate soil levels
         for(int i = 0; i < numSoil; i++)
         {
-            layers.add(new Layer(currentDepth++, getRandomStoneTypeForLayer(LayerTypes.SOIL), new ArrayList<Deposit>()));
+            layers.add(new Layer(currentDepth++, LayerTypes.SOIL, getRandomStoneTypeForLayer(LayerTypes.SOIL), new ArrayList<Deposit>()));
         }
         
         //generate sedimentary layers
@@ -200,7 +201,7 @@ public class LayerFactory {
             depositsForLayer.add(getRandomGemDepositForStone(stone));
         }
         
-        return new Layer(0 ,stone , depositsForLayer);
+        return new Layer(0, inType, stone, depositsForLayer);
     }
     
 }

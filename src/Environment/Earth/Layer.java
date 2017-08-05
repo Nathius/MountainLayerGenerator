@@ -15,15 +15,17 @@ import java.util.List;
 public class Layer {
     
     private StoneType m_stoneType;
+    private LayerTypes m_layerType;
     private int m_depth;
-    private List<Deposit> m_ores;
+    private List<Deposit> m_deposits;
     
     
-    public Layer(int inDepth, StoneType inStoneType, List<Deposit> inOres)
+    public Layer(int inDepth, LayerTypes inLayerType, StoneType inStoneType, List<Deposit> inDeposits)
     {
         m_depth = inDepth;
+        m_layerType = inLayerType;
         m_stoneType = inStoneType;
-        m_ores = inOres;
+        m_deposits = inDeposits;
     }
     
     public int getDepth()
@@ -40,16 +42,16 @@ public class Layer {
         return m_stoneType;
     }
     
-    public List<Deposit> getOreTypes()
+    public List<Deposit> getDeposits()
     {
-        return m_ores;
+        return m_deposits;
     }
 
     @Override
     public String toString() {
-        String str = "Layer \n\tdepth:" + m_depth + ", \n\tstone:" + m_stoneType.getName() + ", \n\tores :";
+        String str = m_layerType.toString().toLowerCase() + " Layer \n\tdepth:" + m_depth + ", \n\tstone:" + m_stoneType.getName() + ", \n\tores :";
         int i = 0;
-        for(Deposit deposit : m_ores)
+        for(Deposit deposit : m_deposits)
         {
             i++;
             str += "\n\t\t" 
